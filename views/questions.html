@@ -1,0 +1,44 @@
+<%- include('header.html') -%>
+
+<h1>Users</h1>
+<h3 class="result"></h3>
+<ul id="users">
+  <% questions.forEach(function(question){ %>
+    <li>
+        <h1><%= question.question_text %></h1>
+    </li>
+    <% question.options.forEach((option,index)=>{ %>
+        <li class="option">
+          <label >
+          <input type="radio" value="<%= index %>" data-answer="<%= question.answer %>" name="<%= question.id %>">
+          <%=  option %>
+
+        </label>
+        </li>
+    <% }) %>
+  <% }) %>
+</ul>
+<button>Submit</button>
+<script>
+  window.onload = function(){
+    const submitBtn = document.querySelector("button")
+    const resultBox = document.querySelector(".result")
+
+    submitBtn.onclick = function(e){
+      let correctCount = 0
+      const checked = document.querySelectorAll("input:checked")
+      checked.forEach(checkedBox =>{
+        if(checkedBox.dataset.answer == checkedBox.value){
+          correctCount++
+          checkedBox.classList.add("correct")
+        }
+        else{
+          checkedBox.classList.add("wrong")
+        }
+      })
+      resultBox.innerText = `Correct Answers = ${correctCount}`
+    }
+  }
+</script>
+
+<%- include('footer.html') -%>

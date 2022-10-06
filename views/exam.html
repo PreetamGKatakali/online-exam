@@ -1,0 +1,32 @@
+<%- include('header.html') -%>
+<form action="/exam" method="post">
+    <div class="input-form">
+        <input type="text" name="topic" id="topic">
+    </div>
+    <div class="input-form">
+        <input type="date" name="edate" id="edate">
+    </div>
+    <div class="input-form">
+        <button>Submit</button>
+    </div>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Topic</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% exams.forEach(exam => {%>
+            <tr>
+                .<td><%= exam.id %></td>
+                <td><%= exam.topic %></td>
+                <td><%= exam.exam_date %></td>
+            </tr>
+        <%})%>
+    </tbody>
+</table>
+
+<%- include('footer.html') -%>

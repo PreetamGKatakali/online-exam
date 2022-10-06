@@ -1,0 +1,46 @@
+<%- include('header.html') -%>
+<form action="/question" method="post">
+    <div class="input-form">
+        <input type="text" name="question_text" id="topic">
+    </div>
+    <div class="input-form">
+        <input type="text" name="options" placeholder="enter # seperated options" id="options">
+    </div>
+    <div class="input-form">
+        <select name="exam_id" id="exam_id">
+            <% exams.forEach(e => {%>
+                <option value="<%= e.id %>"><%= e.topic %></option>
+            <% })%>
+        </select>
+    </div>
+    <div class="input-form">
+        <input type="number" name="actual_answer" placeholder="enter answer option number" id="ans">
+    </div>
+    <div class="input-form">
+        <button>Submit</button>
+    </div>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Question</th>
+            <th>Options</th>
+            <th>Answer</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% questions.forEach(q => {%>
+            <tr>
+                .<td><%= q.id %></td>
+                <td><%= q.question_text %></td>
+                <td><%= q.options %></td>
+                <td><%= q.answer %></td>
+
+            </tr>
+        <%})%>
+    </tbody>
+</table>
+
+<%- include('footer.html') -%>
